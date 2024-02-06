@@ -2,7 +2,8 @@ import React from 'react'
 
 const Profile = () => {
   return (
-    <div>Profile fsdfsjhdf
+    <div>
+      Profile fsdfsjhdf
     </div>
   )
 }
