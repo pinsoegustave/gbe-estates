@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    color: #292D32;
+}
 body {
     font-family: 'Inter', sans-serif;
     background-color: rgb(241, 245, 241);

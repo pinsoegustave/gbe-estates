@@ -8,6 +8,9 @@ import Home from './pages/Home'
 import Header from './components/Header'
 import PrivateRoute from './components/PrivateRoute'
 import CreateListing from './pages/CreateListing'
+import Navbar from './components/Navbar'
+import DetailPage from './pages/DetailPage'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -15,6 +18,8 @@ function App() {
   <Header/>
     <Routes>
       <Route path="/" element={<Home/>}></Route>
+      <Route path='/navbar' element={<Navbar />} />
+      <Route path='/detail' element={<DetailPage />} />
       <Route path="/sign-in" element={<SignIn/>}></Route>
       <Route path="/sign-up" element={<SignUp/>}></Route>
       <Route path="/about" element={<About/>}></Route>
@@ -23,6 +28,7 @@ function App() {
         <Route path='/create-listing' element={<CreateListing/>} />
       </Route>
     </Routes>
+    <Footer />
   </BrowserRouter>
   )
 }
