@@ -11,11 +11,15 @@ import CreateListing from './pages/CreateListing'
 import Navbar from './components/Navbar'
 import DetailPage from './pages/DetailPage'
 import Footer from './components/Footer'
+import BuyHouse from './pages/BuyHouse'
+import Dashboard from './components/Dashboard'
+import Layout from './components/shared/Layout'
+import Proudcts from './components/Proudcts'
 
 function App() {
   return (
   <BrowserRouter>
-  <Header/>
+  {/* <Header/> */}
     <Routes>
       <Route path="/" element={<Home/>}></Route>
       <Route path='/navbar' element={<Navbar />} />
@@ -26,9 +30,16 @@ function App() {
       <Route element={<PrivateRoute/>} >
         <Route path='/profile' element={<Profile/>} />
         <Route path='/create-listing' element={<CreateListing/>} />
+        <Route path='/purchase/:id' element={<BuyHouse/>} />
       </Route>
     </Routes>
-    <Footer />
+    {/* <Footer /> */}
+    <Routes>
+      <Route path='/layout' element={<Layout />}>
+      <Route index element={<Dashboard />} />
+      {/* <Route path='/products' element={<Proudcts />} /> */}
+      </Route>
+    </Routes>
   </BrowserRouter>
   )
 }
