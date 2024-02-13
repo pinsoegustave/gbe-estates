@@ -136,7 +136,7 @@ const CreateListing = () => {
         if (data.success === false) {
             setError(data.message)
         }
-        navigate(`/listing/${data._id}`)
+        navigate(`/detail/${data._id}`)
     } catch (error) {
         setError(error.message);
         setLoading(false)

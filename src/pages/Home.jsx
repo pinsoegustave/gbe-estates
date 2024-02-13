@@ -1,31 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import axios from 'axios'
 import DetailPage from "./DetailPage";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Home = () => {
   
   const [showListingError, setShowListingError] = useState(false);
-  const [userListings, setUserListings] = useState([]);
+  const [userListings, setUserListings] = useState(null);
+  const [ loading, setLoading ] = useState(true);
 
-  const handleShowListing = async () => {
-    try {
-      setShowListingError(false);
-      const res = await fetch("/api/listing/getAllHouses");
-      const data = await res.json();
-      if (data.success === false) {
+  useEffect(() => {
+    const fetchListing = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch('/api/listing/getAllHouses');
+        const data = await res.json();
+        if (data === false) {
+          setShowListingError(true)
+          setLoading(false);
+          return;
+        }
+        setUserListings(data)
+      }  
+      catch (error) {
         setShowListingError(true);
-        return;
+        setLoading(false)
       }
-
-      setUserListings(data);
-    } catch (error) {
-      setShowListingError(true);
-    }
-  };
+    };
+    fetchListing();
+  }, []);
   
   return (
     <div className="relative">
+      {/* <Header /> */}
       <img src="../public/assets/Home.png" alt="" className="w-full h-screen" />
       <div className="absolute p-2 top-0 mt-40 sm:mt-20 w-80 bg-thirdGreen rounded-lg shadow-md right-0 mr-32">
         <h2 className="text-2xl font-extralight text-center">
@@ -48,61 +58,37 @@ const Home = () => {
           <h2 className="text-3xl font-semibold m-10 text-center">
             Better home, more pride
           </h2>
-      {/* <Link to={'/detail'}> */}
-      {/* <div className="p-4 mx-auto grid grid-cols-3 gap-16 w-[80%] gap-y-10 mb-4" > */}
+      <div className="p-4 mx-auto grid grid-cols-3 gap-16 w-[80%] gap-y-10 mb-4" >
       {/* House Card */}
-      <button onClick={handleShowListing}>Display houses</button>
       <p className="text-red-700">{showListingError ? "No houses in the database" : ''}</p>
-      {userListings &&
-        userListings.length > 0 &&
-        userListings.map((listing, index) => (
-          <div key={index} className="border rounded-lg p-3 flex justify-between items-center gap-10">
-            <Link to={`/listing/${listing._id}`}>
-              <img
-                src={listing.imageUrls[0]}
-                alt="listing image"
-                className="h-16 w-16 object-contain rounded-lg"
-              />
-            </Link>
-            <Link className="text-slate-700 font-semibold flex-1 hover:underline truncate">
-            <p className="">{listing.name}</p>
-            </Link>
-            <div className="flex flex-row items-center gap-4 ">
-              {/* <button className="text-red-700 uppercase">Delete</button> */}
-              {/* <button className="text-green-700 uppercase">Edit</button> */}
-              <Link to={`/purchase/${listing._id}`}>
-              <button className="text-green-700 uppercase">Purchase</button>
-              </Link>
-            </div>
-            
-          </div>
-        ))}
 
-
-      {/* {houses.data.data.map((detail, index) => (
-          <div className="" key={index}>
+      {
+        userListings
+      && userListings.map((listing, index) => (
+        <Link to={`/detail/${listing._id}`}>
+          <div className="" >
           <div className="relative w-full rounded-lg bg-slateWhite shadow-md ">
             <div className="relative rounded-lg">
-              <div className="">
+              <div className="" key={index}>
               <img
-                src={detail.imageUrls[0]}
+                src={listing.imageUrls[0]}
                 alt=""
                 className="rounded-lg"
               />
               </div>
               <span className="absolute top-0 bg-slate-100 p-2 mt-4 text-center rounded-sm">
-                For {detail.type}
+                For {listing.type}
               </span>
             </div>
             <div className="ml-2 flex gap-4 mt-1">
             <FaLocationDot className="mt-1.2"/>
-              <span>{detail.address}</span>
+              <span>{listing.address}</span>
             </div>
-            <h2 className="ml-2 font-semibold text-2xl">Park House</h2>
+            <h2 className="ml-2 font-semibold text-2xl">{listing.name}</h2>
             <div className="ml-2">
               <ul className="flex flex-wrap ">
-                <li>Bedrooms:4</li>,<li>Bathrooms: 4 </li>,
-                <li>Sitting rooms:4</li>,<li>Parking: 3 cars</li>
+                <li>Bedrooms:{listing.bedrooms}</li>,<li>Bathrooms: {listing.bathrooms} </li>,
+                <li>Sitting rooms:4</li>,<li>Parking:{listing.parking}</li>
               </ul>
               <h1 className="font-extrabold mt-2">Price: 1,200,000 Frws</h1>
               <button className="p-1 mt-4 mb-2 rounded-sm ml-10 bg-thirdGreen">
@@ -111,9 +97,11 @@ const Home = () => {
             </div>
           </div>
           </div>
-      ))} */}
-      {/* </div> */}
-      {/* </Link> */}
+      </Link>
+      ))
+      } 
+      </div>
+      {/* <Footer /> */}
     </div>
   );
 };

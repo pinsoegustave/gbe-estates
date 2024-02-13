@@ -15,15 +15,17 @@ import BuyHouse from './pages/BuyHouse'
 import Dashboard from './components/Dashboard'
 import Layout from './components/shared/Layout'
 import Proudcts from './components/Proudcts'
+import Orders from './pages/Orders'
+import Customers from './pages/Customers'
 
 function App() {
   return (
   <BrowserRouter>
-  {/* <Header/> */}
+  <Header/>
     <Routes>
       <Route path="/" element={<Home/>}></Route>
       <Route path='/navbar' element={<Navbar />} />
-      <Route path='/detail' element={<DetailPage />} />
+      <Route path='/detail/:listingId' element={<DetailPage />} />
       <Route path="/sign-in" element={<SignIn/>}></Route>
       <Route path="/sign-up" element={<SignUp/>}></Route>
       <Route path="/about" element={<About/>}></Route>
@@ -31,17 +33,17 @@ function App() {
         <Route path='/profile' element={<Profile/>} />
         <Route path='/create-listing' element={<CreateListing/>} />
         <Route path='/purchase/:id' element={<BuyHouse/>} />
+        <Route path='/layout' element={<Layout />}>
+          <Route index element={<Dashboard />} />
+        </Route>
+          <Route path='/products' element={<Proudcts />} />
+          <Route path='/orders' element={<Orders />} />
+          <Route path='/customers' element={<Customers />} />
       </Route>
     </Routes>
-    {/* <Footer /> */}
-    <Routes>
-      <Route path='/layout' element={<Layout />}>
-      <Route index element={<Dashboard />} />
-      {/* <Route path='/products' element={<Proudcts />} /> */}
-      </Route>
-    </Routes>
+    <Footer />
   </BrowserRouter>
   )
 }
 
-export default App
+export default App;

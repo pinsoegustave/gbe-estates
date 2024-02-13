@@ -4,8 +4,8 @@ import Topbar from './shared/Topbar';
 export default function Proudcts() {
   return (
     <div> 
-        <p>this is Proudcts page</p>
-        <Link to="/" className='underline'>go to dashboard</Link>
+        <p>this is Products page</p>
+        <Link to="/layout" className='underline'>go to dashboard</Link>
         {/* <Topbar/> */}
         </div>
   )
