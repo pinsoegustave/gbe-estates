@@ -60,8 +60,6 @@ const Home = () => {
           </h2>
       <div className="p-4 mx-auto grid grid-cols-3 gap-16 w-[80%] gap-y-10 mb-4" >
       {/* House Card */}
-      <p className="text-red-700">{showListingError ? "No houses in the database" : ''}</p>
-
       {
         userListings
       && userListings.map((listing, index) => (

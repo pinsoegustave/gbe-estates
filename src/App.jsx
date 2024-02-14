@@ -17,11 +17,12 @@ import Layout from './components/shared/Layout'
 import Proudcts from './components/Proudcts'
 import Orders from './pages/Orders'
 import Customers from './pages/Customers'
+import Topbar from './components/shared/Topbar'
 
 function App() {
   return (
   <BrowserRouter>
-  <Header/>
+  <Topbar/>
     <Routes>
       <Route path="/" element={<Home/>}></Route>
       <Route path='/navbar' element={<Navbar />} />
