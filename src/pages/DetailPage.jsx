@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 import { Navigation } from "swiper/modules";
@@ -111,7 +111,10 @@ const DetailPage = () => {
                 <span className="mt-2 border border-slate-500 flex"></span>
             </div>
           </div>
-            <button className="bg-slateWhite mt-20 w-full max-w-[200px] h-[40px] font-semibold text-center p-1 rounded-md">Buy now</button>
+          <Link to={`/purchase/${listing._id}`}>
+          <button className="bg-slateWhite mt-20 w-full max-w-[200px] h-[40px] font-semibold text-center p-1 rounded-md">Buy now</button>
+          </Link>
+            
         </div>
         </div>
       )}

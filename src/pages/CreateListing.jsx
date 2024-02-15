@@ -136,7 +136,7 @@ const CreateListing = () => {
         if (data.success === false) {
             setError(data.message)
         }
-        navigate(`/detail/${data._id}`)
+        navigate(`/layout`)
     } catch (error) {
         setError(error.message);
         setLoading(false)
@@ -145,7 +145,7 @@ const CreateListing = () => {
 
   return (
     <main className="p-3 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-semibold text-center my-7">CreateListing</h1>
+      <h1 className="text-3xl font-semibold text-center my-1">CreateListing</h1>
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
         <div className="flex flex-col gap-4 flex-1">
           <input
@@ -240,7 +240,7 @@ const CreateListing = () => {
             <div className="flex items-center gap-2">
               <input
                 type="number"
-                id="regularprice"
+                id="regularPrice"
                 min="50"
                 max="1000000"
                 required
@@ -257,7 +257,7 @@ const CreateListing = () => {
             <div className="flex items-center gap-2">
               <input
                 type="number"
-                id="discountedprice"
+                id="discountPrice"
                 min="0"
                 max="10000000000"
                 required

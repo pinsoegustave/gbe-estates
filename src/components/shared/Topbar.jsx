@@ -41,7 +41,7 @@ export default function Topbar() {
               For Rent
             </Link>
           </li>
-          <li className="flex items-center px-3">
+          <p className="flex items-center px-3">
             <Link className="bg-gray-700 text-white px-2 py-2 rounded-full flex items-center" to="/profile">
                 { currentUser ? (
                   <img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt="profile" />
@@ -51,7 +51,7 @@ export default function Topbar() {
                 Sign in</li>
                 )}
             </Link>
-          </li>
+          </p>
         </ul>
       </div>
     </div>

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function BuyHouse() {
     const [ formData, setFormData ] = useState({});
     // const [ loading, setLoading ] = useState(false);
+    const navigate = useNavigate();
     const { id } = useParams();
 
     const handleChange = (e) => {
@@ -24,7 +25,9 @@ function BuyHouse() {
               body: JSON.stringify(formData),
           });
           const data = await res.json();
+          alert("Your purchase order is sent!");
           console.log(data);
+          navigate('/');
 
         } catch (error) {
           

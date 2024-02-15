@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import axios from 'axios'
-import DetailPage from "./DetailPage";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 const Home = () => {
-  
   const [showListingError, setShowListingError] = useState(false);
   const [userListings, setUserListings] = useState(null);
   const [ loading, setLoading ] = useState(true);
@@ -35,7 +30,7 @@ const Home = () => {
   
   return (
     <div className="relative">
-      {/* <Header /> */}
+      
       <img src="../public/assets/Home.png" alt="" className="w-full h-screen" />
       <div className="absolute p-2 top-0 mt-40 sm:mt-20 w-80 bg-thirdGreen rounded-lg shadow-md right-0 mr-32">
         <h2 className="text-2xl font-extralight text-center">
@@ -63,8 +58,8 @@ const Home = () => {
       {
         userListings
       && userListings.map((listing, index) => (
-        <Link to={`/detail/${listing._id}`}>
-          <div className="" >
+        <Link to={`/detail/${listing._id}`} key={index}>
+          <div className=""  >
           <div className="relative w-full rounded-lg bg-slateWhite shadow-md ">
             <div className="relative rounded-lg">
               <div className="" key={index}>

@@ -18,11 +18,15 @@ import Proudcts from './components/Proudcts'
 import Orders from './pages/Orders'
 import Customers from './pages/Customers'
 import Topbar from './components/shared/Topbar'
+import ShowHeader from './components/ShowHeader'
 
 function App() {
   return (
   <BrowserRouter>
-  <Topbar/>
+  <ShowHeader>
+    <Topbar/>
+  </ShowHeader>
+
     <Routes>
       <Route path="/" element={<Home/>}></Route>
       <Route path='/navbar' element={<Navbar />} />
@@ -32,17 +36,20 @@ function App() {
       <Route path="/about" element={<About/>}></Route>
       <Route element={<PrivateRoute/>} >
         <Route path='/profile' element={<Profile/>} />
-        <Route path='/create-listing' element={<CreateListing/>} />
         <Route path='/purchase/:id' element={<BuyHouse/>} />
         <Route path='/layout' element={<Layout />}>
           <Route index element={<Dashboard />} />
+          <Route path='/layout/products' element={<Proudcts />} />
+        <Route path='/layout/create-listing' element={<CreateListing/>} />
+          <Route path='/layout/orders' element={<Orders />} />
+          <Route path='/layout/customers' element={<Customers />} />
         </Route>
-          <Route path='/products' element={<Proudcts />} />
-          <Route path='/orders' element={<Orders />} />
-          <Route path='/customers' element={<Customers />} />
       </Route>
     </Routes>
-    <Footer />
+    <ShowHeader>
+      <Footer />
+    </ShowHeader>
+
   </BrowserRouter>
   )
 }

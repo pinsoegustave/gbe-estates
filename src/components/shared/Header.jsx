@@ -2,9 +2,12 @@ import React, { Fragment } from 'react'
 import { HiOutlineBell, HiOutlineChatAlt, HiOutlineSearch } from 'react-icons/hi'
 import { Popover, Transition, Menu} from '@headlessui/react' 
 import classNames from 'classnames'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 export default function Header() {
-    const naivgate = useNavigate
+    const naivgate = useNavigate();
+
   return (
     <div className="bg-white h-16 px-4 flex justify-between items-center border-b border-gray-200">
     <div className="relative">
